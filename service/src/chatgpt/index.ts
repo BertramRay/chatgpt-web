@@ -73,6 +73,14 @@ let api: ChatGPTAPI | ChatGPTUnofficialProxyAPI
         options.maxResponseTokens = 4096
       }
     }
+    else if (model.toLowerCase().includes('o1')) {
+      if (/mini/.test(model.toLowerCase())) {
+        options.maxModelTokens = 128000
+        options.maxResponseTokens = 65536
+      }
+      options.maxModelTokens = 128000
+      options.maxResponseTokens = 32768
+    }
 
     if (isNotEmptyString(OPENAI_API_BASE_URL)) {
       // if find /v1 in OPENAI_API_BASE_URL then use it
